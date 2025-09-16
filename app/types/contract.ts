@@ -8,7 +8,14 @@ export interface NameRecord {
 export interface EventLog {
   type: 'registered' | 'updated' | 'transferred';
   name: string;
-  data: any;
+  data: {
+    owner?: string;
+    newAddress?: string;
+    newImageHash?: string;
+    oldOwner?: string;
+    newOwner?: string;
+    [key: string]: unknown;
+  };
   timestamp: number;
   transactionHash: string;
   blockNumber: number;

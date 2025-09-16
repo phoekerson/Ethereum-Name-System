@@ -45,7 +45,7 @@ export default function SearchForm({ onSearch, onCheckAvailability }: SearchForm
             onChange={(e) => setSearchName(e.target.value)}
             placeholder="Entrez le nom à rechercher"
             className="input-field flex-1"
-            onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
           />
           <button
             onClick={handleSearch}
@@ -104,7 +104,7 @@ export default function SearchForm({ onSearch, onCheckAvailability }: SearchForm
               </div>
               
               <div>
-                <span className="font-medium text-gray-600">Hash de l'image :</span>
+                <span className="font-medium text-gray-600">Hash de l&apos;image :</span>
                 <span className="ml-2 font-mono bg-white px-2 py-1 rounded border text-xs">
                   {resolvedData.imageHash}
                 </span>
