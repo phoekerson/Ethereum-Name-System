@@ -1,5 +1,9 @@
 'use client'
-
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
 import { useState, useEffect, useCallback } from 'react';
 import { ethers } from 'ethers';
 import type { NameRecord, EventLog } from "../app/types/contract";
@@ -28,7 +32,6 @@ export const useENSContract = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [events, setEvents] = useState<EventLog[]>([]);
   const [ownedNames, setOwnedNames] = useState<string[]>([]);
-
   
   const connectWallet = useCallback(async () => {
     try {
