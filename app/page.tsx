@@ -55,7 +55,7 @@ export default function HomePage() {
       alert('Adresse mise à jour avec succès !');
     } catch (error) {
       const errorMessage = error instanceof Error 
-        ? (error as any).reason || error.message 
+        ? (error as Error & { reason?: string }).reason || error.message 
         : 'Erreur inconnue';
       alert(`Erreur de mise à jour : ${errorMessage}`);
     }
@@ -73,7 +73,7 @@ export default function HomePage() {
       alert('Image mise à jour avec succès !');
     } catch (error) {
       const errorMessage = error instanceof Error 
-        ? (error as any).reason || error.message 
+        ? (error as Error & { reason?: string }).reason || error.message 
         : 'Erreur inconnue';
       alert(`Erreur de mise à jour : ${errorMessage}`);
     }
@@ -95,7 +95,7 @@ export default function HomePage() {
       alert('Nom transféré avec succès !');
     } catch (error) {
       const errorMessage = error instanceof Error 
-        ? (error as any).reason || error.message 
+        ? (error as Error & { reason?: string }).reason || error.message 
         : 'Erreur inconnue';
       alert(`Erreur de transfert : ${errorMessage}`);
     }
@@ -318,7 +318,7 @@ export default function HomePage() {
                             <span className="font-mono">{event.transactionHash.slice(0, 10)}...</span>
                           </div>
                           
-                          {event.type === 'registered' && (
+                          {event.type === 'registered' && event.data.owner && (
                             <div className="mt-2 p-2 bg-green-50 rounded border border-green-200">
                               <p className="text-green-700 text-xs">
                                 <strong>Propriétaire:</strong> <span className="font-mono">{event.data.owner.slice(0, 10)}...</span>
@@ -339,7 +339,7 @@ export default function HomePage() {
                             </div>
                           )}
                           
-                          {event.type === 'transferred' && (
+                          {event.type === 'transferred' && event.data.oldOwner && event.data.newOwner &&(
                             <div className="mt-2 p-2 bg-orange-50 rounded border border-orange-200">
                               <p className="text-orange-700 text-xs">
                                 <strong>De:</strong> <span className="font-mono">{event.data.oldOwner.slice(0, 8)}...</span><br/>

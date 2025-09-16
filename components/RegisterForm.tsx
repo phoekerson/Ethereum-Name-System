@@ -28,7 +28,7 @@ export default function RegisterForm({ onRegister, isLoading }: RegisterFormProp
       alert('Nom enregistré avec succès !');
     } catch (error) {
       const errorMessage = error instanceof Error 
-        ? (error as any).reason || error.message 
+        ? (error as Error & { reason?: string }).reason || error.message 
         : 'Erreur inconnue';
       alert(`Erreur d'enregistrement : ${errorMessage}`);
     }
