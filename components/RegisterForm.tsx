@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import type { RegisterForm } from '../types/contract';
+import type { RegisterForm } from '../app/types/contract';
 
 interface RegisterFormProps {
   onRegister: (name: string, imageHash: string, targetAddress: string) => Promise<void>;

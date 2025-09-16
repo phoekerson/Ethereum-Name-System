@@ -5,7 +5,7 @@ import { useENSContract } from '../hooks/useENSContract';
 import WalletConnection from '../components/WalletConnection';
 import RegisterForm from "../components/RegisterForm";
 import SearchForm from '../components/SearchForm';
-import type { UpdateForm, TransferForm } from '../types/contract';
+import type { UpdateForm, TransferForm } from './types/contract';
 
 export default function HomePage() {
   const {

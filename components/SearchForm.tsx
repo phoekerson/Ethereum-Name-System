@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import type { NameRecord } from '../types/contract';
+import type { NameRecord } from '../app/types/contract';
 
 interface SearchFormProps {
   onSearch: (name: string) => Promise<NameRecord | null>;
