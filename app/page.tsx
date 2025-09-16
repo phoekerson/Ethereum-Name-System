@@ -55,7 +55,7 @@ export default function HomePage() {
       alert('Adresse mise à jour avec succès !');
     } catch (error) {
       const errorMessage = error instanceof Error 
-        ? (error as any).reason || error.message 
+        ? (error as Error & { reason?: string }).reason || error.message 
         : 'Erreur inconnue';
       alert(`Erreur de mise à jour : ${errorMessage}`);
     }
@@ -73,7 +73,7 @@ export default function HomePage() {
       alert('Image mise à jour avec succès !');
     } catch (error) {
       const errorMessage = error instanceof Error 
-        ? (error as any).reason || error.message 
+        ? (error as Error & { reason?: string }).reason || error.message 
         : 'Erreur inconnue';
       alert(`Erreur de mise à jour : ${errorMessage}`);
     }
@@ -95,7 +95,7 @@ export default function HomePage() {
       alert('Nom transféré avec succès !');
     } catch (error) {
       const errorMessage = error instanceof Error 
-        ? (error as any).reason || error.message 
+        ? (error as Error & { reason?: string }).reason || error.message 
         : 'Erreur inconnue';
       alert(`Erreur de transfert : ${errorMessage}`);
     }
