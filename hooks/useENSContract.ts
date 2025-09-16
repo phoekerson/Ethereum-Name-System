@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { ethers } from 'ethers';
-import type { NameRecord, EventLog } from '../types/contract';
+import type { NameRecord, EventLog } from "../app/types/contract";
 
 const CONTRACT_ABI = [
   "function registerName(string memory name, string memory imageHash, address targetAddress) external",
