@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useENSContract } from '../hooks/useENSContract';
 import WalletConnection from '../components/WalletConnection';
 import RegisterForm from "../components/RegisterForm";
@@ -37,8 +37,9 @@ export default function HomePage() {
   const handleConnect = async () => {
     try {
       await connectWallet();
-    } catch (error: any) {
-      alert(`Erreur de connexion : ${error.message}`);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Erreur inconnue';
+      alert(`Erreur de connexion : ${errorMessage}`);
     }
   };
 
@@ -52,8 +53,11 @@ export default function HomePage() {
       await updateAddress(updateForm.name, updateForm.newAddress);
       setUpdateForm({ ...updateForm, newAddress: '' });
       alert('Adresse mise à jour avec succès !');
-    } catch (error: any) {
-      alert(`Erreur de mise à jour : ${error.reason || error.message}`);
+    } catch (error) {
+      const errorMessage = error instanceof Error 
+        ? (error as any).reason || error.message 
+        : 'Erreur inconnue';
+      alert(`Erreur de mise à jour : ${errorMessage}`);
     }
   };
 
@@ -67,8 +71,11 @@ export default function HomePage() {
       await updateImage(updateForm.name, updateForm.newImageHash);
       setUpdateForm({ ...updateForm, newImageHash: '' });
       alert('Image mise à jour avec succès !');
-    } catch (error: any) {
-      alert(`Erreur de mise à jour : ${error.reason || error.message}`);
+    } catch (error) {
+      const errorMessage = error instanceof Error 
+        ? (error as any).reason || error.message 
+        : 'Erreur inconnue';
+      alert(`Erreur de mise à jour : ${errorMessage}`);
     }
   };
 
@@ -86,8 +93,11 @@ export default function HomePage() {
       await transferName(transferForm.name, transferForm.newOwner);
       setTransferForm({ name: '', newOwner: '' });
       alert('Nom transféré avec succès !');
-    } catch (error: any) {
-      alert(`Erreur de transfert : ${error.reason || error.message}`);
+    } catch (error) {
+      const errorMessage = error instanceof Error 
+        ? (error as any).reason || error.message 
+        : 'Erreur inconnue';
+      alert(`Erreur de transfert : ${errorMessage}`);
     }
   };
 
@@ -149,7 +159,7 @@ export default function HomePage() {
                         disabled={isLoading}
                         className="btn-primary w-full"
                       >
-                        Mettre à jour l'adresse
+                        Mettre à jour l&apos;adresse
                       </button>
                     </div>
                     
@@ -166,7 +176,7 @@ export default function HomePage() {
                         disabled={isLoading}
                         className="btn-purple w-full"
                       >
-                        Mettre à jour l'image
+                        Mettre à jour l&apos;image
                       </button>
                     </div>
                   </div>
@@ -268,7 +278,7 @@ export default function HomePage() {
                   {events.length === 0 ? (
                     <div className="text-center py-8 text-gray-500">
                       <span className="text-4xl mb-2 block animate-pulse-slow">⏳</span>
-                      <p>En attente d'événements...</p>
+                      <p>En attente d&apos;événements...</p>
                       <p className="text-sm mt-1">Les événements apparaîtront ici en temps réel</p>
                     </div>
                   ) : (

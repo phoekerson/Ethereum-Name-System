@@ -21,19 +21,23 @@ export default function RegisterForm({ onRegister, isLoading }: RegisterFormProp
       alert('Veuillez remplir tous les champs');
       return;
     }
-    
+
     try {
       await onRegister(form.name, form.imageHash, form.targetAddress);
       setForm({ name: '', imageHash: '', targetAddress: '' });
       alert('Nom enregistré avec succès !');
-    } catch (error: any) {
-      alert(`Erreur d'enregistrement : ${error.reason || error.message}`);
+    } catch (error) {
+      const errorMessage = error instanceof Error 
+        ? (error as any).reason || error.message 
+        : 'Erreur inconnue';
+      alert(`Erreur d'enregistrement : ${errorMessage}`);
     }
   };
 
   return (
     <div className="card">
       <h3 className="text-xl font-semibold mb-4 text-gray-800">📝 Enregistrer un Nom</h3>
+      
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -51,7 +55,7 @@ export default function RegisterForm({ onRegister, isLoading }: RegisterFormProp
         
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Hash de l'image IPFS
+            Hash de l&apos;image IPFS
           </label>
           <input
             type="text"
@@ -80,13 +84,13 @@ export default function RegisterForm({ onRegister, isLoading }: RegisterFormProp
         <button
           type="submit"
           disabled={isLoading}
-          className="btn-success w-full"
+          className="btn-primary w-full"
         >
           {isLoading ? (
-            <span className="flex items-center justify-center space-x-2">
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <div className="flex items-center justify-center space-x-2">
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               <span>Enregistrement...</span>
-            </span>
+            </div>
           ) : (
             'Enregistrer le Nom'
           )}
